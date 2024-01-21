@@ -6,10 +6,13 @@ width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
 height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
 fourcc = cv2.VideoWriter_fourcc(*'XVID')
 out = cv2.VideoWriter('Color_Tracking.mp4', fourcc, 25, (width, height))
+recording = False
 
 while True:
     ret, frame = cap.read()
-    
+    if not ret:
+        print("Fehler beim Lesen des Videos.")
+        break
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
     
     #Range of blue
@@ -40,11 +43,21 @@ while True:
     mask_combined = cv2.bitwise_or(mask_combined, mask_green)
     
     res = cv2.bitwise_and(frame,frame,mask = mask_combined)
-    out.write(res)
     cv2.imshow('res',res)
-    k = cv2.waitKey(5) & 0xFF
-    if k == 27:
+    key = cv2.waitKey(5) & 0xFF
+
+    if key == ord('s'):
+        recording = not recording
+
+    if recording:
+        out.write(res)
+
+    if key == ord('c'):
+        recording = False
+
+    if key == ord('q'):
         break
         
-cap.release()        
+cap.release()
+out.release()
 cv2.destroyAllWindows()

@@ -1,4 +1,4 @@
- Color Tracking using OpenCV
+## Color Tracking using OpenCV
 
 ## Overview
 This Python script utilizes the OpenCV library to perform real-time color tracking. It captures video from the default camera device and tracks three colors: red, green, and blue. The script displays the result in a window where only the tracked colors are visible, and it saves this output to an MP4 file.
@@ -32,5 +32,5 @@ To stop the script, focus on the output window and press the 'ESC' key.
 You can customize the script by changing the color ranges in the HSV color space to track different colors.
 
 ## Output
-The script will create an MP4 file named 'Color_Tracking.mp4' in the directory where the script is located. This file contains the video output with only the tracked colors visible.
+The script will create an MP4 file named 'Color_Tracking.mp4' in the directory where the script is located when you press the 's' key. To stop recording the video you just have to press the 'c' key. This file contains the video output with only the tracked colors visible.
 
